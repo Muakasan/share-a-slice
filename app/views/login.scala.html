@@ -1,0 +1,25 @@
+@(loginForm: Form[User])
+@* switch from pizza data to something else *@
+
+@import helper.twitterBootstrap._
+@import helper._
+
+@main(title = "Log In") {
+    <h1>Log In</h1></br>
+    @helper.form(action = routes.Application.loginSubmit) {  
+        @inputText(
+            loginForm("username"), 
+            '_label -> "Username"
+        )
+        <br>        
+        @inputPassword(
+            loginForm("password"), 
+            '_label -> "Password"
+        ) 
+        <br>
+        <div class="actions">
+            <input type="submit" class="btn btn-success" value="Log In">
+            <a href="@routes.Application.index" class="btn btn-primary">Cancel</a>
+        </div>
+    }
+}

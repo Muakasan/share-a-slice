@@ -1,0 +1,52 @@
+@(signupForm: Form[User], toppingsSeq: Seq[String])
+
+@import helper.twitterBootstrap._
+@import helper._
+
+@main(title = "Sign Up") {
+    <h1> Make a new Account</h1></br>
+    <div class="well bs-component">
+        @helper.form(action = routes.Application.signupSubmit) {  
+            @inputText(
+                signupForm("username"), 
+                '_label -> "Username"
+            )
+            <br>        
+            @inputPassword(
+                signupForm("password"), 
+                '_label -> "Password"
+            )
+
+            @inputPassword(
+                signupForm("password"), 
+                '_label -> "Confirm Password"
+            )        
+            <div id="toppings">
+                @for(i <- 0 to (toppingsSeq.length-1)){
+                    <br>
+                    @select(
+                       signupForm("toppings[" + i + "]"),
+                       options("5" -> "Absolutely Delicious", "4" -> "Tasty" ,"3" -> "Indifferent" ,"2" -> "Dislike", "1" -> "Ewwww!"),
+                       '_label -> toppingsSeq(i), '_default -> "-- Tastiness --"
+                    )
+                }  
+            </div><br>
+            <div class="actions">
+                <div class="row">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3">
+                        <input type="submit" class="btn btn-success" value="Sign Up">
+                    </div>
+                    <div class="col-lg-3">
+                        <a href="@routes.Application.index" class="btn btn-primary form-control">Cancel</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}
+
+<script>
+    $("select").addClass("form-control");
+    $("input").addClass("form-control");
+</script>
