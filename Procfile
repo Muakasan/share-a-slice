@@ -1,2 +1,2 @@
-web: target/universal/stage/bin/share-a-slice -Dhttp.port=$PORT
+web: target/start -Dhttp.port=$PORT
 
